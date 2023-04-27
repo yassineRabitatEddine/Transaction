@@ -1,5 +1,7 @@
 package dao;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +16,8 @@ public class Transaction {
 	private String cptDeb;
 	private String cptCred;
 	private double montant;
-	
+	private String type;
+	private String date;
 	
 	public int getId() {
 		return id;
@@ -55,6 +58,15 @@ public class Transaction {
 		this.cptDeb = cptDeb;
 		this.cptCred = cptCred;
 		this.montant = montant;
+		String a=cptDeb.substring(0,3);
+		String b=cptCred.substring(0,3);
+		if(a.equals(b))this.type="VIRINT";
+		else this.type="VIRCHAC";
+		
+		Date date=new Date();
+		SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
+		this.date=sdf.format(date);
+		
 	}
 	
 	
